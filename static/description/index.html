@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JSON Table Field (OWL) for Odoo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Minimal, self-contained CSS tuned for Odoo Apps rendering -->
+  <style>
+    :root{
+      --brand:#017E84;
+      --brand-2:#714B67;
+      --muted:#8F8F8F;
+      --bg:#f8fafb;
+      --card:#ffffff;
+      --ink:#1f2a37;
+      --ink-2:#334155;
+      --ring:rgba(1,126,132,.25);
+      --shadow:0 8px 20px rgba(2,8,23,.06);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:16px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    .container{max-width:1080px;margin:0 auto;padding:36px 18px 64px}
+    .hero{
+      position:relative;
+      border-radius:calc(var(--radius) + 8px);
+      background:linear-gradient(135deg, #017E84 0%, #714B67 100%);
+      color:#fff;
+      overflow:hidden;
+      padding:38px 28px;
+      box-shadow:var(--shadow);
+    }
+    .hero h1{margin:0 0 10px;font-size:34px;letter-spacing:.2px}
+    .hero p{margin:0 0 16px;opacity:.95;max-width:760px}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .badge{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
+      padding:6px 10px;border-radius:999px;font-size:13px
+    }
+    .hero img.cover{
+      position:absolute;right:-10px;bottom:-8px;width:420px;max-width:50vw;opacity:.2;pointer-events:none
+    }
+
+    .grid{display:grid;gap:16px}
+    @media (min-width:860px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    .card{
+      background:var(--card);
+      border:1px solid #ebeff3;
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .card h3{margin:0 0 8px;font-size:18px;color:var(--ink)}
+    .muted{color:var(--muted)}
+    .list{margin:12px 0 0;padding-left:18px}
+    .list li{margin:6px 0}
+
+    .section{margin:28px 0 0}
+    .section h2{font-size:22px;margin:0 0 10px;color:var(--ink-2)}
+    .pill{
+      display:inline-block;background:#eef6f7;color:#065e60;
+      padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid #d6eef0
+    }
+
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0b1220;color:#d3e1ff;
+         padding:10px;border-radius:12px;border:1px solid #101827;overflow:auto;font-size:13px}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f1f5f9;padding:2px 6px;border-radius:6px}
+
+    .screens{display:grid;gap:14px}
+    @media (min-width:860px){.screens{grid-template-columns:repeat(3,1fr)}}
+    .shot{
+      background:#fff;border:1px solid #e7edf3;border-radius:14px;padding:10px;box-shadow:var(--shadow)
+    }
+    .shot img{width:100%;height:220px;object-fit:cover;border-radius:10px}
+    .shot span{display:block;text-align:center;color:var(--muted);font-size:12px;margin-top:6px}
+
+    .table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid #e7edf3;border-radius:14px;overflow:hidden}
+    .table th,.table td{padding:10px 12px;border-bottom:1px solid #eef2f6}
+    .table th{background:#f7fafc;text-align:left;font-weight:600}
+    .table tr:last-child td{border-bottom:0}
+
+    .callout{
+      border-left:4px solid var(--brand);
+      background:#f0fbfb;
+      padding:14px 16px;border-radius:12px;margin:14px 0;border:1px solid #e2f3f3
+    }
+
+    .btn{
+      display:inline-block;border-radius:12px;padding:10px 14px;
+      border:1px solid var(--brand);color:#fff;background:var(--brand);
+      text-decoration:none;font-weight:600;box-shadow:var(--shadow)
+    }
+    .btn.alt{background:#fff;color:var(--brand)}
+    .foot{
+      margin-top:28px;padding-top:18px;border-top:1px dashed #e5eaf0;color:var(--muted);font-size:13px
+    }
+    /* tiny highlight for important props */
+    .hl{background:linear-gradient( to top, rgba(1,126,132,.15) 0%, rgba(1,126,132,0) 70%);}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>JSON Table Field (OWL) — Dynamic, Editable Tables inside Odoo Forms</h1>
+      <p>
+        Create configurable, spreadsheet-like tables in any Odoo model using a single <code>Json</code> field.
+        Add/rename/remove columns, switch types (<strong>text</strong>, <strong>selection</strong>, <strong>boolean</strong>, <strong>image</strong>),
+        manage options, edit rows, and export to CSV — all from the form view.
+      </p>
+      <div class="badges">
+        <span class="badge">Odoo 16.0 / 17.0 / 18.0</span>
+        <span class="badge">OWL Field Widget</span>
+        <span class="badge">No external deps</span>
+        <span class="badge">CSV Export</span>
+      </div>
+      <img class="cover" src="cover.png" alt="">
+    </section>
+
+    <!-- VALUE / FEATURES -->
+    <section class="section">
+      <h2>Why this module?</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Dynamic schema</h3>
+          <p class="muted">Business users can design columns on the fly: add, rename, delete, and change types without developer changes.</p>
+        </div>
+        <div class="card">
+          <h3>Multiple input types</h3>
+          <ul class="list">
+            <li>Text</li>
+            <li>Selection (with options)</li>
+            <li>Boolean</li>
+            <li>Image (Data URL, size-limited)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>CSV Export</h3>
+          <p class="muted">One click to export the visible grid to CSV with a UTF-8 BOM; images are marked as <em>“Image Data”</em>.</p>
+        </div>
+      </div>
+    </section>
+<!-- Visual comparison (Large layout) -->
+<section class="section" style="margin-top:36px;">
+    <h2 style="text-align:center; font-size:28px; color:#017E84; margin-bottom:12px; letter-spacing:0.5px;">
+      Visual Comparison — Raw JSON vs JSON Table
+    </h2>
+    <p style="text-align:center; color:#555; max-width:800px; margin:0 auto 28px;">
+      See how the <strong>JSON Table Widget</strong> transforms a raw technical JSON editor
+      into a clear, editable, user-friendly interface.
+    </p>
+  
+    <div style="
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:stretch;
+        gap:40px;
+    ">
+      <!-- BEFORE: Raw JSON -->
+      <div style="
+          flex:1 1 600px;
+          max-width:1000px;
+          background:#fff;
+          border:1px solid #e1e6eb;
+          border-radius:16px;
+          overflow:hidden;
+          box-shadow:0 12px 32px rgba(0,0,0,0.08);
+          text-align:center;
+          position:relative;
+      ">
+        <div style="
+            position:absolute;
+            top:16px;
+            left:16px;
+            background:#714B67;
+            color:#fff;
+            font-weight:700;
+            font-size:15px;
+            padding:6px 14px;
+            border-radius:999px;
+            box-shadow:0 2px 6px rgba(0,0,0,0.2);
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+        ">Before</div>
+  
+        <div style="background:#714B67; color:#fff; padding:14px 0; font-weight:600; font-size:18px;">
+          Standard JSON Field
+        </div>
+        <img src="json_raw_large.png" alt="Raw JSON field editor"
+             style="width:100%; height:auto; display:block;">
+        <div style="padding:12px 16px; color:#777; font-size:14px;">
+          Default Odoo JSON editor — plain text, not friendly for non-technical users.
+        </div>
+      </div>
+  
+      <!-- AFTER: JSON Table -->
+      <div style="
+          flex:1 1 600px;
+          max-width:1000px;
+          background:#fff;
+          border:1px solid #e1e6eb;
+          border-radius:16px;
+          overflow:hidden;
+          box-shadow:0 12px 32px rgba(0,0,0,0.08);
+          text-align:center;
+          position:relative;
+      ">
+        <div style="
+            position:absolute;
+            top:16px;
+            left:16px;
+            background:#017E84;
+            color:#fff;
+            font-weight:700;
+            font-size:15px;
+            padding:6px 14px;
+            border-radius:999px;
+            box-shadow:0 2px 6px rgba(0,0,0,0.2);
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+        ">After</div>
+  
+        <div style="background:#017E84; color:#fff; padding:14px 0; font-weight:600; font-size:18px;">
+          JSON Table Widget
+        </div>
+        <img src="json_table_large.png" alt="JSON Table widget view"
+             style="width:100%; height:auto; display:block;">
+        <div style="padding:12px 16px; color:#777; font-size:14px;">
+          Dynamic, interactive grid with editable columns, selections, booleans, and image upload.
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- VIDEO DEMO -->
+<section class="section" style="margin-top:48px;">
+    <h2 style="text-align:center; font-size:26px; color:#017E84; margin-bottom:14px;">
+      🎬 Live Demo — JSON Table in Action
+    </h2>
+    <p style="text-align:center; color:#555; max-width:800px; margin:0 auto 24px;">
+      Watch how the <strong>JSON Table Widget</strong> makes editing structured data effortless —
+      adding columns, changing types, uploading images, and exporting to CSV, all inside Odoo.
+    </p>
+  
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:wrap;
+    ">
+      <div style="
+          position:relative;
+          width:100%;
+          max-width:960px;
+          border-radius:16px;
+          overflow:hidden;
+          box-shadow:0 12px 32px rgba(0,0,0,0.12);
+          background:#000;
+      ">
+        <!-- Local video file example -->
+        <video 
+          controls 
+          poster="video_cover.png"
+          style="width:100%; height:auto; display:block; border:none; outline:none;">
+          <source src="tip.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+  
+        <!-- Optional label -->
+        <div style="
+            position:absolute;
+            top:14px;
+            left:14px;
+            background:rgba(1,126,132,0.9);
+            color:#fff;
+            font-weight:600;
+            font-size:14px;
+            padding:6px 12px;
+            border-radius:999px;
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+        ">
+          Demo
+        </div>
+      </div>
+    </div>
+  
+    <p style="text-align:center; color:#777; margin-top:10px; font-size:14px;">
+      Example video showing column creation, type changes, and image upload within the JSON Table.
+    </p>
+  </section>
+  
+    <!-- HOW IT LOOKS -->
+    <section class="section">
+        <h2>Look & Feel</h2>
+        <div class="screens">
+          <div class="shot"><img src="screenshot_1.png" alt=""><span>Editable header + types</span></div>
+          <div class="shot"><img src="screenshot_2.png" alt=""><span>Rows with text/boolean/selection</span></div>
+          <div class="shot"><img src="screenshot_3.png" alt=""><span>Dynamic Add Row, Column CSV export</span></div>
+        </div>
+      </section>
+  
+  
+    <!-- INSTALL / CONFIG -->
+    <section class="section">
+      <h2>Installation</h2>
+      <ol class="list">
+        <li>Copy the module into your addons path.</li>
+        <li>Update App list and install.</li>
+        <li>Ensure your model has a <code>fields.Json</code> field to store the data.</li>
+      </ol>
+      <div class="callout">
+        <strong>Tip:</strong> Add the widget in your form view like
+        <code>widget="json_table"</code> and (optionally) pass <code>options</code>.
+      </div>
+    </section>
+
+    <!-- USAGE -->
+    <section class="section">
+      <h2>Usage (<span class="pill">XML + Field</span>)</h2>
+      <div class="kbd hl">
+<pre>&lt;!-- Python model --&gt;
+from odoo import models, fields
+
+class ChecklistJob(models.Model):
+    _name = "mw.checklist.job"
+    task_data = fields.Json(string="Task Data")  # stores {columns: [...], rows: [...]}
+
+&lt;!-- XML form view --&gt;
+&lt;field name="task_data" widget="json_table"
+       options="{'hide_column_controls': False}"/&gt;</pre>
+      </div>
+      <p class="muted" style="margin-top:10px">
+        The widget writes back a single JSON structure to the field whenever you edit:
+      </p>
+      <div class="kbd">
+<pre>{
+  "columns": [
+    {"name": "Room", "type": "text"},
+    {"name": "Checked", "type": "boolean"},
+    {"name": "Quarter", "type": "selection", "options": ["Q1","Q2","Q3","Q4"]},
+    {"name": "Photo", "type": "image"}
+  ],
+  "rows": [
+    {"Room": "101", "Checked": true, "Quarter": "Q2", "Photo": "data:image/png;base64,..."}
+  ]
+}</pre>
+      </div>
+    </section>
+
+    <!-- OPTIONS / PROPS -->
+    <section class="section">
+      <h2>Widget options</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>hide_column_controls</code></td>
+            <td>Boolean</td>
+            <td><code>false</code></td>
+            <td>Hide “Add column”, rename/type/options controls; useful for read-only schemas.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SAFETY / LIMITS -->
+    <section class="section">
+      <h2>Limits & safeguards</h2>
+      <ul class="list">
+        <li><strong>Images</strong>: client-side size check &lt;= 2&nbsp;MB; stored as Data URL in the JSON field.</li>
+        <li><strong>CSV Export</strong>: adds BOM for Excel compatibility; boolean → “True/False”, images → “Image Data”.</li>
+        <li><strong>Type changes</strong>: switching a column’s type resets its cell values to sensible defaults.</li>
+      </ul>
+    </section>
+
+    <!-- CHANGELOG -->
+    <section class="section">
+      <h2>Changelog</h2>
+      <div class="card">
+        <h3>18.0.1.0.0</h3>
+        <ul class="list">
+          <li>Initial release: dynamic columns, 4 input types, CSV export, image preview & delete.</li>
+          <li>Prop: <code>hide_column_controls</code>, better notifications, robust write-back.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="foot">
+      <span>© Managewall LLC — JSON Table Field (OWL) for Odoo</span>
+    </div>
+  </div>
+</body>
+</html>

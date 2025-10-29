@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mw_json_table_widget
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-28 02:07+0000\n"
+"PO-Revision-Date: 2025-10-28 02:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "-- Select --"
+msgstr "-- Сонгох --"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Add Column"
+msgstr "Багана нэмэх"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Add Row"
+msgstr "Мөр нэмэх"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Boolean"
+msgstr "Тийм/Үгүй"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Column Name"
+msgstr "Баганы нэр"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Delete"
+msgstr "Устгах"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Delete Row"
+msgstr "Мөр устгах"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Image"
+msgstr "Зураг"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "No rows. Click \"Add Row\"."
+msgstr "Мөр алга. \"Мөр нэмэх\" дарна уу."
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Options (comma separated)"
+msgstr "Сонголтууд (таслалаар)"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Selection"
+msgstr "Сонголт"
+
+#. module: mw_json_table_widget
+#. odoo-javascript
+#: code:addons/mw_json_table_widget/static/src/xml/json_table.xml:0
+msgid "Text"
+msgstr "Текст"
