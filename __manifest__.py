@@ -1,12 +1,14 @@
 {
     'name': 'MW JSON Table Widget',
-    'version': '1.0.0',
+    'version': '18.0.1.0.0',
     'summary': 'JSON Table Widget for Odoo',
     'description': """A custom Odoo widget to display and edit JSON data in a table format.""",
     'author': 'Managewall LLC',
     'website': 'https://managewall.mn',
     'category': 'Extra Tools',
-    'license': 'LGPL-3',
+    'license': 'OPL-1',
+    "price": 16.0,
+    "currency": "USD",
     'depends': ['base', 'web'],
     'assets': {
         'web.assets_backend': [
@@ -16,6 +18,6 @@
         ],
     },
     'installable': True,
-    'application': False,
+    'application': True,
     'auto_install': False,
 }
