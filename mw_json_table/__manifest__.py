@@ -7,7 +7,7 @@
     'website': '@_@',
     'category': 'Extra Tools',
     'license': 'OPL-1',
-    "price": 10.0,
+    "price": 30.0,
     "currency": "USD",
     'depends': ['base', 'web'],
     'assets': {
