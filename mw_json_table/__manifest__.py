@@ -1,5 +1,5 @@
 {
-    'name': 'MW JSON Table Widget',
+    'name': 'JSON Table Widget',
     'version': '18.0.1.0.0',
     'summary': 'JSON Table Widget for Odoo',
     'description': """A custom Odoo widget to display and edit JSON data in a table format.""",
