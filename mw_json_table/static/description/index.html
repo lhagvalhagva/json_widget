@@ -4,453 +4,6 @@
   <meta charset="utf-8" />
   <title>JSON Table Field (OWL) for Odoo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      line-height: 1.6;
-      color: #2c3e50;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-    }
-    
-    .oe_container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    section {
-      padding: 80px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    section:first-child {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      text-align: center;
-      padding: 120px 20px;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    }
-    
-    section:nth-child(odd):not(:first-child) {
-      background: #ffffff;
-    }
-    
-    section:nth-child(even) {
-      background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
-    }
-    
-    .oe_slogan {
-      font-size: 2.5em;
-      font-weight: 700;
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    section:first-child .oe_slogan {
-      color: white;
-      background: none;
-      -webkit-text-fill-color: white;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.2);
-      font-size: 3em;
-    }
-    
-    .oe_span12 {
-      margin-top: 32px;
-    }
-    
-    .oe_span12 p {
-      font-size: 1.2em;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.95);
-      max-width: 900px;
-      margin: 0 auto 24px;
-    }
-    
-    section:not(:first-child) .oe_span12 p {
-      color: #555;
-    }
-    
-    code {
-      background: rgba(255,255,255,0.2);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9em;
-      backdrop-filter: blur(10px);
-    }
-    
-    section:not(:first-child) code {
-      background: #f1f3f5;
-      color: #e83e8c;
-    }
-    
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      margin: 6px;
-      border-radius: 20px;
-      font-size: 0.85em;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .badge:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-    
-    .badge-primary {
-      background: rgba(255,255,255,0.25);
-      color: white;
-    }
-    
-    .badge-info {
-      background: rgba(255,255,255,0.25);
-      color: white;
-    }
-    
-    .badge-success {
-      background: rgba(255,255,255,0.25);
-      color: white;
-    }
-    
-    .badge-secondary {
-      background: rgba(255,255,255,0.25);
-      color: white;
-    }
-    
-    .oe_picture img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    
-    .oe_picture img:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
-    }
-    
-    section:first-child img {
-      margin-top: 40px;
-    }
-    
-    .oe_row {
-      display: grid;
-      gap: 40px;
-      margin-top: 60px;
-    }
-    
-    .oe_spaced {
-      padding: 0 20px;
-    }
-    
-    .oe_span4 {
-      background: white;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(102, 126, 234, 0.1);
-    }
-    
-    .oe_span4:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
-    }
-    
-    .oe_span4 h3 {
-      color: #667eea;
-      font-size: 1.5em;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-    
-    .oe_span4 ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .oe_span4 li {
-      padding: 8px 0;
-      color: #555;
-      position: relative;
-      padding-left: 24px;
-    }
-    
-    .oe_span4 li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #667eea;
-      font-weight: bold;
-    }
-    
-    section:nth-child(2) .oe_row {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-    
-    .oe_span6 {
-      position: relative;
-    }
-    
-    section:nth-child(3) .oe_row {
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-    }
-    
-    .oe_span6 h4 {
-      text-align: center;
-      color: #667eea;
-      font-size: 1.4em;
-      margin-bottom: 24px;
-      font-weight: 700;
-    }
-    
-    .text-center {
-      text-align: center;
-    }
-    
-    .text-muted {
-      color: #6c757d;
-      font-size: 0.95em;
-      margin-top: 16px;
-    }
-    
-    .oe_demo_video {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      background: #000;
-    }
-    
-    video {
-      width: 100%;
-      display: block;
-    }
-    
-    section:nth-child(5) .oe_row {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    
-    section:nth-child(5) .oe_picture {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
-    }
-    
-    section:nth-child(5) .oe_picture:hover {
-      transform: translateY(-8px);
-    }
-    
-    pre {
-      background: #2d3748;
-      color: #e2e8f0;
-      padding: 24px;
-      border-radius: 12px;
-      overflow-x: auto;
-      margin: 24px 0;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      border-left: 4px solid #667eea;
-    }
-    
-    pre code {
-      background: none;
-      color: inherit;
-      padding: 0;
-    }
-    
-    ol {
-      padding-left: 24px;
-      font-size: 1.1em;
-      line-height: 2;
-    }
-    
-    ol li {
-      margin: 12px 0;
-      color: #555;
-    }
-    
-    .alert {
-      padding: 20px 24px;
-      border-radius: 12px;
-      margin-top: 32px;
-      border-left: 4px solid #667eea;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
-    }
-    
-    .alert strong {
-      color: #667eea;
-      font-weight: 700;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin: 32px 0;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-    }
-    
-    thead {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-    }
-    
-    th {
-      padding: 16px;
-      text-align: left;
-      font-weight: 700;
-    }
-    
-    td {
-      padding: 16px;
-      border-bottom: 1px solid #e9ecef;
-    }
-    
-    tbody tr:hover {
-      background: #f8f9fa;
-    }
-    
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
-    
-    ul:not(.oe_span4 ul) {
-      list-style: none;
-      padding: 0;
-    }
-    
-    ul:not(.oe_span4 ul) li {
-      padding: 12px 0;
-      padding-left: 32px;
-      position: relative;
-      font-size: 1.05em;
-      color: #555;
-    }
-    
-    ul:not(.oe_span4 ul) li:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: #667eea;
-      font-weight: bold;
-      font-size: 1.2em;
-    }
-    
-    .card {
-      background: white;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      margin-top: 24px;
-      border: 1px solid rgba(102, 126, 234, 0.1);
-      transition: transform 0.3s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-    }
-    
-    .card h3 {
-      color: #667eea;
-      font-size: 1.5em;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-    
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .card li {
-      padding: 8px 0;
-      padding-left: 28px;
-      position: relative;
-      color: #555;
-    }
-    
-    .card li:before {
-      content: "✦";
-      position: absolute;
-      left: 0;
-      color: #667eea;
-      font-size: 1.2em;
-    }
-    
-    section:last-child {
-      padding: 60px 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      text-align: center;
-    }
-    
-    section:last-child span {
-      font-size: 0.95em;
-      opacity: 0.9;
-    }
-    
-    @media (max-width: 768px) {
-      section:nth-child(3) .oe_row {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      .oe_slogan {
-        font-size: 1.8em;
-      }
-      
-      section:first-child .oe_slogan {
-        font-size: 2em;
-      }
-      
-      section {
-        padding: 60px 0;
-      }
-      
-      .badge {
-        font-size: 0.75em;
-        padding: 6px 12px;
-      }
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    section > * {
-      animation: fadeInUp 0.6s ease-out;
-    }
-  </style>
 </head>
 <body>
   <div class="oe_container">
@@ -458,7 +11,7 @@
     <section class="oe_container">
         <div class="oe_row oe_spaced">
             <h2 class="oe_slogan">JSON Table Field (OWL) — Dynamic, Editable Tables inside Odoo Forms</h2>
-            <div class="oe_span12">
+            <div class="oe_span12 oe_mt32">
                 <p>
                     Create configurable, spreadsheet-like tables in any Odoo model using a single <code>Json</code> field.
                     Add/rename/remove columns, switch types (<strong>text</strong>, <strong>selection</strong>, <strong>boolean</strong>, <strong>image</strong>),
@@ -470,7 +23,7 @@
                     <span class="badge badge-success">No external deps</span>
                     <span class="badge badge-secondary">CSV Export</span>
                 </div>
-                <img class="oe_picture oe_screenshot" src="cover.png" alt="">
+                <img class="oe_picture oe_screenshot" src="cover.png" alt="" style="max-width: 100%; height: auto;">
             </div>
         </div>
     </section>
@@ -494,7 +47,7 @@
             </div>
             <div class="oe_span4">
                 <h3>CSV Export</h3>
-                <p class="oe_mt16">One click to export the visible grid to CSV with a UTF-8 BOM; images are marked as <em>"Image Data"</em>.</p>
+                <p class="oe_mt16">One click to export the visible grid to CSV with a UTF-8 BOM; images are marked as <em>“Image Data”</em>.</p>
             </div>
         </div>
     </section>
@@ -510,14 +63,14 @@
             <div class="oe_span6">
                 <div class="oe_picture oe_screenshot oe_mt16">
                     <h4 class="oe_slogan">Before: Standard JSON Field</h4>
-                    <img src="json_raw_large.png" alt="Raw JSON field editor">
+                    <img src="json_raw_large.png" alt="Raw JSON field editor" style="max-width: 100%; height: auto;">
                     <p class="text-center text-muted">Default Odoo JSON editor — plain text, not friendly for non-technical users.</p>
                 </div>
             </div>
             <div class="oe_span6">
                 <div class="oe_picture oe_screenshot oe_mt16">
                     <h4 class="oe_slogan">After: JSON Table Widget</h4>
-                    <img src="json_table_large.png" alt="JSON Table widget view">
+                    <img src="json_table_large.png" alt="JSON Table widget view" style="max-width: 100%; height: auto;">
                     <p class="text-center text-muted">Dynamic, interactive grid with editable columns, selections, booleans, and image upload.</p>
                 </div>
             </div>
@@ -534,7 +87,7 @@
             </h3>
             <div class="oe_span12 oe_mt16">
                 <div class="oe_demo_video">
-                    <video controls="controls" poster="video_cover.png">
+                    <video controls="controls" poster="video_cover.png" style="max-width: 100%; height: auto;">
                         <source src="tip.mov" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -552,19 +105,19 @@
             <h2 class="oe_slogan">Look & Feel</h2>
             <div class="oe_span4">
                 <div class="oe_picture">
-                    <img src="screenshot_1.png" class="oe_screenshot" alt="">
+                    <img src="screenshot_1.png" class="oe_screenshot" alt="" style="max-width: 100%; height: auto;">
                     <p class="text-center text-muted oe_mt16">Editable header + types</p>
                 </div>
             </div>
             <div class="oe_span4">
                 <div class="oe_picture">
-                    <img src="screenshot_2.png" class="oe_screenshot" alt="">
+                    <img src="screenshot_2.png" class="oe_screenshot" alt="" style="max-width: 100%; height: auto;">
                     <p class="text-center text-muted oe_mt16">Rows with text/boolean/selection</p>
                 </div>
             </div>
             <div class="oe_span4">
                 <div class="oe_picture">
-                    <img src="screenshot_3.png" class="oe_screenshot" alt="">
+                    <img src="screenshot_3.png" class="oe_screenshot" alt="" style="max-width: 100%; height: auto;">
                     <p class="text-center text-muted oe_mt16">Dynamic Add Row, Column CSV export</p>
                 </div>
             </div>
@@ -594,30 +147,38 @@
         <div class="oe_row oe_spaced">
             <h2 class="oe_slogan">Usage (XML + Field)</h2>
             <div class="oe_span12">
-                <pre><code>&lt;!-- Python model --&gt;
-from odoo import models, fields
+                <pre>
+                    <code>
+                        &lt;!-- Python model --&gt;
+                        from odoo import models, fields
 
-class ChecklistJob(models.Model):
-    _name = "mw.checklist.job"
-    task_data = fields.Json(string="Task Data")  # stores {columns: [...], rows: [...]}
+                        class ChecklistJob(models.Model):
+                            _name = "mw.checklist.job"
+                            task_data = fields.Json(string="Task Data")  # stores {columns: [...], rows: [...]}
 
-&lt;!-- XML form view --&gt;
-&lt;field name="task_data" widget="json_table"
-       options="{'hide_column_controls': False}"/&gt;</code></pre>
+                        &lt;!-- XML form view --&gt;
+                        &lt;field name="task_data" widget="json_table"
+                               options="{'hide_column_controls': False}"/&gt;
+                    </code>
+                </pre>
                 <p class="oe_mt16 text-muted">
                     The widget writes back a single JSON structure to the field whenever you edit:
                 </p>
-                <pre><code>{
-  "columns": [
-    {"name": "Room", "type": "text"},
-    {"name": "Checked", "type": "boolean"},
-    {"name": "Quarter", "type": "selection", "options": ["Q1","Q2","Q3","Q4"]},
-    {"name": "Photo", "type": "image"}
-  ],
-  "rows": [
-    {"Room": "101", "Checked": true, "Quarter": "Q2", "Photo": "data:image/png;base64,..."}
-  ]
-}</code></pre>
+                <pre>
+                    <code>
+                        {
+                          "columns": [
+                            {"name": "Room", "type": "text"},
+                            {"name": "Checked", "type": "boolean"},
+                            {"name": "Quarter", "type": "selection", "options": ["Q1","Q2","Q3","Q4"]},
+                            {"name": "Photo", "type": "image"}
+                          ],
+                          "rows": [
+                            {"Room": "101", "Checked": true, "Quarter": "Q2", "Photo": "data:image/png;base64,..."}
+                          ]
+                        }
+                    </code>
+                </pre>
             </div>
         </div>
     </section>
@@ -636,7 +197,7 @@ class ChecklistJob(models.Model):
                             <td><code>hide_column_controls</code></td>
                             <td>Boolean</td>
                             <td><code>false</code></td>
-                            <td>Hide "Add column", rename/type/options controls; useful for read-only schemas.</td>
+                            <td>Hide “Add column”, rename/type/options controls; useful for read-only schemas.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -651,8 +212,8 @@ class ChecklistJob(models.Model):
             <div class="oe_span12">
                 <ul>
                     <li><strong>Images</strong>: client-side size check &lt;= 2&nbsp;MB; stored as Data URL in the JSON field.</li>
-                    <li><strong>CSV Export</strong>: adds BOM for Excel compatibility; boolean → "True/False", images → "Image Data".</li>
-                    <li><strong>Type changes</strong>: switching a column's type resets its cell values to sensible defaults.</li>
+                    <li><strong>CSV Export</strong>: adds BOM for Excel compatibility; boolean → “True/False”, images → “Image Data”.</li>
+                    <li><strong>Type changes</strong>: switching a column’s type resets its cell values to sensible defaults.</li>
                 </ul>
             </div>
         </div>
