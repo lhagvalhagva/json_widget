@@ -7,7 +7,7 @@
     'website': 'https://managewall.mn',
     'category': 'Extra Tools',
     'license': 'OPL-1',
-    "price": 16.0,
+    "price": 10.0,
     "currency": "USD",
     'depends': ['base', 'web'],
     'assets': {
