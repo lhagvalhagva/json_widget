@@ -22,7 +22,6 @@
                   <button t-if="!props.readonly and !props.hideColumnControls" class="btn btn-link text-danger p-0 ms-2"
                           t-on-click="() => this.removeColumn(col_index)" title="Delete">✕</button>
                 </div>
-                
                 <div t-if="!props.hideColumnControls" class="mb-2">
                   <select t-att-disabled="props.readonly"
                           class="o_input form-select form-select-sm"

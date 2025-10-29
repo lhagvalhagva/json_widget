@@ -18,7 +18,7 @@
         ],
     },
     "images": [
-        "static/description/tip.mov"
+        "static/description/json_table_large.png"
     ],
     'installable': True,
     'application': True,
