@@ -17,6 +17,9 @@
             'mw_json_table_widget/static/src/css/json_table.css',
         ],
     },
+    "images": [
+        "static/description/json_table_large.png"
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,
