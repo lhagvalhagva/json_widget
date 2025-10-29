@@ -5,94 +5,99 @@
   <title>JSON Table Field (OWL) for Odoo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body>
-  <div class="oe_container">
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #2c3e50; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
     <!-- HERO -->
-    <section class="oe_container">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">JSON Table Field (OWL) — Dynamic, Editable Tables inside Odoo Forms</h2>
-            <div class="oe_span12 oe_mt32">
-                <p>
-                    Create configurable, spreadsheet-like tables in any Odoo model using a single <code>Json</code> field.
+    <section style="padding: 120px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 3em; font-weight: 700; margin: 0 0 24px 0; color: white; text-shadow: 0 2px 20px rgba(0,0,0,0.2);">JSON Table Field (OWL) — Dynamic, Editable Tables inside Odoo Forms</h2>
+            <div style="margin-top: 32px;">
+                <p style="font-size: 1.2em; line-height: 1.8; color: rgba(255,255,255,0.95); max-width: 900px; margin: 0 auto 24px;">
+                    Create configurable, spreadsheet-like tables in any Odoo model using a single <code style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">Json</code> field.
                     Add/rename/remove columns, switch types (<strong>text</strong>, <strong>selection</strong>, <strong>boolean</strong>, <strong>image</strong>),
                     manage options, edit rows, and export to CSV — all from the form view.
                 </p>
-                <div class="oe_mt16">
-                    <span class="badge badge-primary">Odoo 16.0 / 17.0 / 18.0</span>
-                    <span class="badge badge-info">OWL Field Widget</span>
-                    <span class="badge badge-success">No external deps</span>
-                    <span class="badge badge-secondary">CSV Export</span>
+                <div style="margin-top: 16px;">
+                    <span style="display: inline-block; padding: 8px 16px; margin: 6px; border-radius: 20px; font-size: 0.85em; font-weight: 600; background: rgba(255,255,255,0.25); color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">Odoo 16.0 / 17.0 / 18.0</span>
+                    <span style="display: inline-block; padding: 8px 16px; margin: 6px; border-radius: 20px; font-size: 0.85em; font-weight: 600; background: rgba(255,255,255,0.25); color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">OWL Field Widget</span>
+                    <span style="display: inline-block; padding: 8px 16px; margin: 6px; border-radius: 20px; font-size: 0.85em; font-weight: 600; background: rgba(255,255,255,0.25); color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">No external deps</span>
+                    <span style="display: inline-block; padding: 8px 16px; margin: 6px; border-radius: 20px; font-size: 0.85em; font-weight: 600; background: rgba(255,255,255,0.25); color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">CSV Export</span>
                 </div>
-                <img class="oe_picture oe_screenshot" src="cover.png" alt="" style="max-width: 100%; height: auto;">
+                <img src="cover.png" alt="" style="width: 100%; margin-top: 40px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
             </div>
         </div>
     </section>
 
     <!-- VALUE / FEATURES -->
-    <section class="oe_container oe_dark">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Why this module?</h2>
-            <div class="oe_span4">
-                <h3>Dynamic schema</h3>
-                <p class="oe_mt16">Business users can design columns on the fly: add, rename, delete, and change types without developer changes.</p>
-            </div>
-            <div class="oe_span4">
-                <h3>Multiple input types</h3>
-                <ul>
-                    <li>Text</li>
-                    <li>Selection (with options)</li>
-                    <li>Boolean</li>
-                    <li>Image (Data URL, size-limited)</li>
-                </ul>
-            </div>
-            <div class="oe_span4">
-                <h3>CSV Export</h3>
-                <p class="oe_mt16">One click to export the visible grid to CSV with a UTF-8 BOM; images are marked as <em>“Image Data”</em>.</p>
+    <section style="padding: 80px 0; background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Why this module?</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 60px;">
+                <div style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(102, 126, 234, 0.1);">
+                    <h3 style="color: #667eea; font-size: 1.5em; margin: 0 0 16px 0; font-weight: 700;">Dynamic schema</h3>
+                    <p style="margin: 16px 0 0 0; color: #555;">Business users can design columns on the fly: add, rename, delete, and change types without developer changes.</p>
+                </div>
+                <div style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(102, 126, 234, 0.1);">
+                    <h3 style="color: #667eea; font-size: 1.5em; margin: 0 0 16px 0; font-weight: 700;">Multiple input types</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="padding: 8px 0 8px 24px; color: #555; position: relative;">Text</li>
+                        <li style="padding: 8px 0 8px 24px; color: #555; position: relative;">Selection (with options)</li>
+                        <li style="padding: 8px 0 8px 24px; color: #555; position: relative;">Boolean</li>
+                        <li style="padding: 8px 0 8px 24px; color: #555; position: relative;">Image (Data URL, size-limited)</li>
+                    </ul>
+                </div>
+                <div style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(102, 126, 234, 0.1);">
+                    <h3 style="color: #667eea; font-size: 1.5em; margin: 0 0 16px 0; font-weight: 700;">CSV Export</h3>
+                    <p style="margin: 16px 0 0 0; color: #555;">One click to export the visible grid to CSV with a UTF-8 BOM; images are marked as <em>"Image Data"</em>.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Visual comparison -->
-    <section class="oe_container">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Visual Comparison — Raw JSON vs JSON Table</h2>
-            <h3 class="oe_mt32 text-center text-muted">
+    <section style="padding: 80px 0; background: #ffffff;">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Visual Comparison — Raw JSON vs JSON Table</h2>
+            <h3 style="margin: 32px 0 0 0; text-align: center; color: #6c757d; font-size: 0.95em; font-weight: 400;">
                 See how the <strong>JSON Table Widget</strong> transforms a raw technical JSON editor
                 into a clear, editable, user-friendly interface.
             </h3>
-            <div class="oe_span6">
-                <div class="oe_picture oe_screenshot oe_mt16">
-                    <h4 class="oe_slogan">Before: Standard JSON Field</h4>
-                    <img src="json_raw_large.png" alt="Raw JSON field editor" style="max-width: 100%; height: auto;">
-                    <p class="text-center text-muted">Default Odoo JSON editor — plain text, not friendly for non-technical users.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;">
+                <div>
+                    <div style="margin-top: 16px;">
+                        <h4 style="text-align: center; color: #667eea; font-size: 1.4em; margin: 0 0 24px 0; font-weight: 700;">Before: Standard JSON Field</h4>
+                        <img src="json_raw_large.png" alt="Raw JSON field editor" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                        <p style="text-align: center; color: #6c757d; font-size: 0.95em; margin-top: 16px;">Default Odoo JSON editor — plain text, not friendly for non-technical users.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="oe_span6">
-                <div class="oe_picture oe_screenshot oe_mt16">
-                    <h4 class="oe_slogan">After: JSON Table Widget</h4>
-                    <img src="json_table_large.png" alt="JSON Table widget view" style="max-width: 100%; height: auto;">
-                    <p class="text-center text-muted">Dynamic, interactive grid with editable columns, selections, booleans, and image upload.</p>
+                <div>
+                    <div style="margin-top: 16px;">
+                        <h4 style="text-align: center; color: #667eea; font-size: 1.4em; margin: 0 0 24px 0; font-weight: 700;">After: JSON Table Widget</h4>
+                        <img src="json_table_large.png" alt="JSON Table widget view" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                        <p style="text-align: center; color: #6c757d; font-size: 0.95em; margin-top: 16px;">Dynamic, interactive grid with editable columns, selections, booleans, and image upload.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- VIDEO DEMO -->
-    <section class="oe_container oe_dark">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">🎬 Live Demo — JSON Table in Action</h2>
-            <h3 class="oe_mt32 text-center text-muted">
+    <section style="padding: 80px 0; background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🎬 Live Demo — JSON Table in Action</h2>
+            <h3 style="margin: 32px 0 0 0; text-align: center; color: #6c757d; font-size: 0.95em; font-weight: 400;">
                 Watch how the <strong>JSON Table Widget</strong> makes editing structured data effortless —
                 adding columns, changing types, uploading images, and exporting to CSV, all inside Odoo.
             </h3>
-            <div class="oe_span12 oe_mt16">
-                <div class="oe_demo_video">
-                    <video controls="controls" poster="video_cover.png" style="max-width: 100%; height: auto;">
+            <div style="margin-top: 32px;">
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.2); background: #000;">
+                    <video controls="controls" poster="video_cover.png" style="width: 100%; display: block;">
                         <source src="tip.mov" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <p class="text-center text-muted oe_mt16">
+                <p style="text-align: center; color: #6c757d; font-size: 0.95em; margin-top: 16px;">
                     Example video showing column creation, type changes, and image upload within the JSON Table.
                 </p>
             </div>
@@ -100,104 +105,97 @@
     </section>
 
     <!-- HOW IT LOOKS -->
-    <section class="oe_container">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Look & Feel</h2>
-            <div class="oe_span4">
-                <div class="oe_picture">
-                    <img src="screenshot_1.png" class="oe_screenshot" alt="" style="max-width: 100%; height: auto;">
-                    <p class="text-center text-muted oe_mt16">Editable header + types</p>
+    <section style="padding: 80px 0; background: #ffffff;">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Look & Feel</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;">
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                    <img src="screenshot_1.png" alt="" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                    <p style="text-align: center; color: #6c757d; font-size: 0.95em; margin-top: 16px;">Editable header + types</p>
                 </div>
-            </div>
-            <div class="oe_span4">
-                <div class="oe_picture">
-                    <img src="screenshot_2.png" class="oe_screenshot" alt="" style="max-width: 100%; height: auto;">
-                    <p class="text-center text-muted oe_mt16">Rows with text/boolean/selection</p>
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                    <img src="screenshot_2.png" alt="" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                    <p style="text-align: center; color: #6c757d; font-size: 0.95em; margin-top: 16px;">Rows with text/boolean/selection</p>
                 </div>
-            </div>
-            <div class="oe_span4">
-                <div class="oe_picture">
-                    <img src="screenshot_3.png" class="oe_screenshot" alt="" style="max-width: 100%; height: auto;">
-                    <p class="text-center text-muted oe_mt16">Dynamic Add Row, Column CSV export</p>
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                    <img src="screenshot_3.png" alt="" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                    <p style="text-align: center; color: #6c757d; font-size: 0.95em; margin-top: 16px;">Dynamic Add Row, Column CSV export</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- INSTALL / CONFIG -->
-    <section class="oe_container oe_dark">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Installation</h2>
-            <div class="oe_span12">
-                <ol>
-                    <li>Copy the module into your addons path.</li>
-                    <li>Update App list and install.</li>
-                    <li>Ensure your model has a <code>fields.Json</code> field to store the data.</li>
+    <section style="padding: 80px 0; background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Installation</h2>
+            <div style="margin-top: 32px;">
+                <ol style="padding-left: 24px; font-size: 1.1em; line-height: 2; margin: 0;">
+                    <li style="margin: 12px 0; color: #555;">Copy the module into your addons path.</li>
+                    <li style="margin: 12px 0; color: #555;">Update App list and install.</li>
+                    <li style="margin: 12px 0; color: #555;">Ensure your model has a <code style="background: #f1f3f5; color: #e83e8c; padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">fields.Json</code> field to store the data.</li>
                 </ol>
-                <div class="alert alert-info oe_mt32">
-                    <strong>Tip:</strong> Add the widget in your form view like
-                    <code>widget="json_table"</code> and (optionally) pass <code>options</code>.
+                <div style="padding: 20px 24px; border-radius: 12px; margin-top: 32px; border-left: 4px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);">
+                    <strong style="color: #667eea; font-weight: 700;">Tip:</strong> Add the widget in your form view like
+                    <code style="background: #f1f3f5; color: #e83e8c; padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">widget="json_table"</code> and (optionally) pass <code style="background: #f1f3f5; color: #e83e8c; padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">options</code>.
                 </div>
             </div>
         </div>
     </section>
 
     <!-- USAGE -->
-    <section class="oe_container">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Usage (XML + Field)</h2>
-            <div class="oe_span12">
-                <pre>
-                    <code>
-                        &lt;!-- Python model --&gt;
-                        from odoo import models, fields
+    <section style="padding: 80px 0; background: #ffffff;">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Usage (XML + Field)</h2>
+            <div style="margin-top: 32px;">
+                <pre style="background: #2d3748; color: #e2e8f0; padding: 24px; border-radius: 12px; overflow-x: auto; margin: 24px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-left: 4px solid #667eea;"><code style="background: none; color: inherit; padding: 0;">&lt;!-- Python model --&gt;
+from odoo import models, fields
 
-                        class ChecklistJob(models.Model):
-                            _name = "mw.checklist.job"
-                            task_data = fields.Json(string="Task Data")  # stores {columns: [...], rows: [...]}
+class ChecklistJob(models.Model):
+    _name = "mw.checklist.job"
+    task_data = fields.Json(string="Task Data")  # stores {columns: [...], rows: [...]}
 
-                        &lt;!-- XML form view --&gt;
-                        &lt;field name="task_data" widget="json_table"
-                               options="{'hide_column_controls': False}"/&gt;
-                    </code>
-                </pre>
-                <p class="oe_mt16 text-muted">
+&lt;!-- XML form view --&gt;
+&lt;field name="task_data" widget="json_table"
+       options="{'hide_column_controls': False}"/&gt;</code></pre>
+                <p style="margin: 16px 0 0 0; color: #6c757d; font-size: 0.95em;">
                     The widget writes back a single JSON structure to the field whenever you edit:
                 </p>
-                <pre>
-                    <code>
-                        {
-                          "columns": [
-                            {"name": "Room", "type": "text"},
-                            {"name": "Checked", "type": "boolean"},
-                            {"name": "Quarter", "type": "selection", "options": ["Q1","Q2","Q3","Q4"]},
-                            {"name": "Photo", "type": "image"}
-                          ],
-                          "rows": [
-                            {"Room": "101", "Checked": true, "Quarter": "Q2", "Photo": "data:image/png;base64,..."}
-                          ]
-                        }
-                    </code>
-                </pre>
+                <pre style="background: #2d3748; color: #e2e8f0; padding: 24px; border-radius: 12px; overflow-x: auto; margin: 24px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-left: 4px solid #667eea;"><code style="background: none; color: inherit; padding: 0;">{
+  "columns": [
+    {"name": "Room", "type": "text"},
+    {"name": "Checked", "type": "boolean"},
+    {"name": "Quarter", "type": "selection", "options": ["Q1","Q2","Q3","Q4"]},
+    {"name": "Photo", "type": "image"}
+  ],
+  "rows": [
+    {"Room": "101", "Checked": true, "Quarter": "Q2", "Photo": "data:image/png;base64,..."}
+  ]
+}</code></pre>
             </div>
         </div>
     </section>
 
     <!-- OPTIONS / PROPS -->
-    <section class="oe_container oe_dark">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Widget options</h2>
-            <div class="oe_span12">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+    <section style="padding: 80px 0; background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Widget options</h2>
+            <div style="margin-top: 32px;">
+                <table style="width: 100%; border-collapse: separate; border-spacing: 0; margin: 32px 0; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                    <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <tr>
+                            <th style="padding: 16px; text-align: left; font-weight: 700;">Option</th>
+                            <th style="padding: 16px; text-align: left; font-weight: 700;">Type</th>
+                            <th style="padding: 16px; text-align: left; font-weight: 700;">Default</th>
+                            <th style="padding: 16px; text-align: left; font-weight: 700;">Description</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>hide_column_controls</code></td>
-                            <td>Boolean</td>
-                            <td><code>false</code></td>
-                            <td>Hide “Add column”, rename/type/options controls; useful for read-only schemas.</td>
+                            <td style="padding: 16px; border-bottom: 1px solid #e9ecef;"><code style="background: #f1f3f5; color: #e83e8c; padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">hide_column_controls</code></td>
+                            <td style="padding: 16px; border-bottom: 1px solid #e9ecef;">Boolean</td>
+                            <td style="padding: 16px; border-bottom: 1px solid #e9ecef;"><code style="background: #f1f3f5; color: #e83e8c; padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">false</code></td>
+                            <td style="padding: 16px; border-bottom: 1px solid #e9ecef;">Hide "Add column", rename/type/options controls; useful for read-only schemas.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -206,39 +204,40 @@
     </section>
 
     <!-- SAFETY / LIMITS -->
-    <section class="oe_container">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Limits & safeguards</h2>
-            <div class="oe_span12">
-                <ul>
-                    <li><strong>Images</strong>: client-side size check &lt;= 2&nbsp;MB; stored as Data URL in the JSON field.</li>
-                    <li><strong>CSV Export</strong>: adds BOM for Excel compatibility; boolean → “True/False”, images → “Image Data”.</li>
-                    <li><strong>Type changes</strong>: switching a column’s type resets its cell values to sensible defaults.</li>
+    <section style="padding: 80px 0; background: #ffffff;">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Limits & safeguards</h2>
+            <div style="margin-top: 32px;">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 12px 0 12px 32px; position: relative; font-size: 1.05em; color: #555;"><strong>Images</strong>: client-side size check &lt;= 2&nbsp;MB; stored as Data URL in the JSON field.</li>
+                    <li style="padding: 12px 0 12px 32px; position: relative; font-size: 1.05em; color: #555;"><strong>CSV Export</strong>: adds BOM for Excel compatibility; boolean → "True/False", images → "Image Data".</li>
+                    <li style="padding: 12px 0 12px 32px; position: relative; font-size: 1.05em; color: #555;"><strong>Type changes</strong>: switching a column's type resets its cell values to sensible defaults.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- CHANGELOG -->
-    <section class="oe_container oe_dark">
-        <div class="oe_row oe_spaced">
-            <h2 class="oe_slogan">Changelog</h2>
-            <div class="oe_span12">
-                <div class="card oe_mt16">
-                    <h3>18.0.1.0.0</h3>
-                    <ul>
-                        <li>Initial release: dynamic columns, 4 input types, CSV export, image preview & delete.</li>
-                        <li>Prop: <code>hide_column_controls</code>, better notifications, robust write-back.</li>
+    <section style="padding: 80px 0; background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);">
+        <div style="padding: 0 20px;">
+            <h2 style="font-size: 2.5em; font-weight: 700; margin: 0 0 24px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Changelog</h2>
+            <div style="margin-top: 32px;">
+                <div style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); margin-top: 24px; border: 1px solid rgba(102, 126, 234, 0.1);">
+                    <h3 style="color: #667eea; font-size: 1.5em; margin: 0 0 16px 0; font-weight: 700;">18.0.1.0.0</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="padding: 8px 0 8px 28px; position: relative; color: #555;">Initial release: dynamic columns, 4 input types, CSV export, image preview & delete.</li>
+                        <li style="padding: 8px 0 8px 28px; position: relative; color: #555;">Prop: <code style="background: #f1f3f5; color: #e83e8c; padding: 2px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">hide_column_controls</code>, better notifications, robust write-back.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="oe_container">
-        <div class="oe_row oe_spaced">
-            <div class="oe_span12 text-center text-muted oe_mt32">
-                <span>© Managewall LLC — JSON Table Field (OWL) for Odoo</span>
+    <!-- FOOTER -->
+    <section style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;">
+        <div style="padding: 0 20px;">
+            <div style="text-align: center; color: rgba(255,255,255,0.9); margin-top: 32px;">
+                <span style="font-size: 0.95em; opacity: 0.9;">© Managewall LLC — JSON Table Field (OWL) for Odoo</span>
             </div>
         </div>
     </section>
