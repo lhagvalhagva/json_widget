@@ -18,7 +18,7 @@
         ],
     },
     "images": [
-        "static/description/json_table_large.png"
+        "static/description/cover.png"
     ],
     'installable': True,
     'application': True,
