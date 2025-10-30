@@ -32,6 +32,8 @@ class JsonTable extends Field {
         this.state = useState({
             columns: columns,
             rows: Array.isArray(v.rows) ? [...v.rows] : [],
+            showImagePreviewModal: false,
+            previewImageUrl: ""
         });
     }
 
@@ -50,6 +52,15 @@ class JsonTable extends Field {
         }
     }
 
+    getDefaultValue(type) {
+        switch(type) {
+            case 'boolean': return false;
+            case 'selection': return '';
+            case 'image': return '';
+            default: return '';
+        }
+    }
+
     addColumn() {
         const label = `Column ${this.state.columns.length + 1}`;
         const col = {
@@ -62,15 +73,6 @@ class JsonTable extends Field {
             r[label] = r[label] ?? this.getDefaultValue(col.type);
         }
         this._writeBack();
-    }
-    
-    getDefaultValue(type) {
-        switch(type) {
-            case 'boolean': return false;
-            case 'selection': return '';
-            case 'image': return '';
-            default: return '';
-        }
     }
     
     removeColumn(idx) {
@@ -102,12 +104,10 @@ class JsonTable extends Field {
         const newType = ev.target.value;
         col.type = newType;
         
-    
         if (newType === 'selection' && !col.options) {
             col.options = [];
         }
         
-    
         for (const r of this.state.rows) {
             r[col.name] = this.getDefaultValue(newType);
         }
@@ -119,7 +119,6 @@ class JsonTable extends Field {
         col.options = ev.target.value.split(',').map(s => s.trim()).filter(s => s);
         this._writeBack();
     }
-
 
     addRow() {
         const row = {};
@@ -166,6 +165,17 @@ class JsonTable extends Field {
         this._writeBack();
     }
     
+    // Image Preview функцүүд
+    showImagePreview(imageUrl) {
+        this.state.previewImageUrl = imageUrl;
+        this.state.showImagePreviewModal = true;
+    }
+
+    hideImagePreview() {
+        this.state.showImagePreviewModal = false;
+        this.state.previewImageUrl = "";
+    }
+    
     exportTable() {
         const { columns, rows } = this.state;
         const columnNames = columns.map(col => col.name);
@@ -189,7 +199,7 @@ class JsonTable extends Field {
         const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.setAttribute('download', 'json_table_data.csv');
+        link.setAttribute('download', 'data.csv');
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

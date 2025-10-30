@@ -1,124 +1,147 @@
-<t t-name="mw_json_table_widget.JsonTable" owl="1">
-  <div class="mw-json-table o_field_widget">
-    <div class="mw-json-table__toolbar">
-      <button t-if="!props.hideColumnControls" type="button" class="btn btn-primary" t-on-click="() => this.addColumn()">Add Column</button>
-      <button type="button" class="btn btn-secondary" t-on-click="() => this.addRow()">Add Row</button>
-      <button type="button" class="btn btn-info" t-on-click="() => this.exportTable()">Export to CSV</button>
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="mw_json_table_widget.JsonTable" owl="1">
+    <div class="mw-json-table o_field_widget">
+      <div class="mw-json-table__toolbar">
+        <button t-if="!props.hideColumnControls" type="button" class="btn btn-primary" t-on-click="() => this.addColumn()">Add Column</button>
+        <button type="button" class="btn btn-secondary" t-on-click="() => this.addRow()">Add Row</button>
+        <button type="button" class="btn btn-info" t-on-click="() => this.exportTable()">Export to CSV</button>
+      </div>
+
+      <div class="mw-json-table__wrap">
+        <table class="o_list_view table table-sm table-striped">
+          <thead>
+            <tr>
+              <th style="width: 50px;">#</th>
+              <t t-foreach="state.columns" t-as="col" t-key="col_index">
+                <th>
+                  <div class="mb-2">
+                    <input t-att-disabled="props.readonly or props.hideColumnControls"
+                           class="o_input o_field_char mw-col-input"
+                           t-att-value="col.name"
+                           placeholder="Column Name"
+                           t-on-change="(ev) => this.renameColumn(col_index, ev)"/>
+                    <button t-if="!props.readonly and !props.hideColumnControls" class="btn btn-link text-danger p-0 ms-2"
+                            t-on-click="() => this.removeColumn(col_index)" title="Delete">✕</button>
+                  </div>
+                  
+                  <div t-if="!props.hideColumnControls" class="mb-2">
+                    <select t-att-disabled="props.readonly"
+                            class="o_input form-select form-select-sm"
+                            t-att-value="col.type"
+                            t-on-change="(ev) => this.changeColumnType(col_index, ev)">
+                      <option value="text">Text</option>
+                      <option value="selection">Selection</option>
+                      <option value="boolean">Boolean</option>
+                      <option value="image">Image</option>
+                    </select>
+                  </div>
+                  
+                  <div t-if="col.type === 'selection' and !props.readonly and !props.hideColumnControls">
+                    <input class="o_input o_field_char form-control form-control-sm"
+                           t-att-value="col.options ? col.options.join(', ') : ''"
+                           placeholder="Options (comma separated)"
+                           t-on-change="(ev) => this.updateColumnOptions(col_index, ev)"/>
+                  </div>
+                </th>
+              </t>
+              <th style="width: 80px;">✦</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="state.rows" t-as="row" t-key="row_index">
+              <tr>
+                <td class="text-muted text-center"><t t-esc="row_index + 1"/></td>
+                <t t-foreach="state.columns" t-as="col" t-key="col.name">
+                  <td>
+                    <t t-if="col.type === 'text'">
+                      <input t-att-disabled="props.readonly"
+                             class="o_input o_field_char w-100"
+                             t-att-value="row[col.name] || ''"
+                             t-on-input="(ev) => this.editCell(row_index, col.name, ev, 'text')"/>
+                    </t>
+                    <t t-if="col.type === 'selection'">
+                      <select t-att-disabled="props.readonly"
+                              class="o_input form-select form-select-sm w-100"
+                              t-att-value="row[col.name] || ''"
+                              t-on-change="(ev) => this.editCell(row_index, col.name, ev, 'selection')">
+                        <option value="">-- Select --</option>
+                        <t t-foreach="col.options || []" t-as="opt" t-key="opt">
+                          <option t-att-value="opt"><t t-esc="opt"/></option>
+                        </t>
+                      </select>
+                    </t>
+                    <t t-if="col.type === 'boolean'">
+                      <div class="form-check">
+                        <input t-att-disabled="props.readonly"
+                               type="checkbox"
+                               class="form-check-input"
+                               t-att-checked="row[col.name]"
+                               t-on-change="(ev) => this.editCell(row_index, col.name, ev, 'boolean')"/>
+                      </div>
+                    </t>
+                    
+                    <t t-if="col.type === 'image'">
+                      <div class="mw-image-cell">
+                        <t t-if="row[col.name]">
+                          <img t-att-src="row[col.name]" 
+                               class="mw-cell-image" 
+                               alt="" 
+                               style="max-width: 100px; max-height: 100px; cursor: pointer; border-radius: 4px;"
+                               t-on-click="() => this.showImagePreview(row[col.name])"/>
+                          <button t-if="!props.readonly" 
+                                  class="btn btn-sm btn-link text-danger p-0 d-block"
+                                  t-on-click="() => this.removeImage(row_index, col.name)">
+                            Delete
+                          </button>
+                        </t>
+                        <t t-else="">
+                          <input t-if="!props.readonly"
+                                 type="file"
+                                 accept="image/*"
+                                 class="form-control form-control-sm"
+                                 t-on-change="(ev) => this.handleImageUpload(row_index, col.name, ev)"/>
+                        </t>
+                      </div>
+                    </t>
+                  </td>
+                </t>
+                <td class="text-center">
+                  <button t-if="!props.readonly" class="btn btn-link text-danger p-0"
+                          t-on-click="() => this.removeRow(row_index)" title="Delete Row">Delete</button>
+                </td>
+              </tr>
+            </t>
+            <tr t-if="!state.rows.length" class="text-center text-muted">
+              <td t-att-colspan="state.columns.length + 2">No rows. Click "Add Row".</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary mt-2" t-on-click="() => this.addRow()">Add Row</button>
     </div>
 
-    <div class="mw-json-table__wrap">
-      <table class="o_list_view table table-sm table-striped">
-        <thead>
-          <tr>
-            <th style="width: 50px;">#</th>
-            <t t-foreach="state.columns" t-as="col" t-key="col_index">
-              <th>
-                <div class="mb-2">
-                  <input t-att-disabled="props.readonly or props.hideColumnControls"
-                         class="o_input o_field_char mw-col-input"
-                         t-att-value="col.name"
-                         placeholder="Column Name"
-                         t-on-change="(ev) => this.renameColumn(col_index, ev)"/>
-                  <button t-if="!props.readonly and !props.hideColumnControls" class="btn btn-link text-danger p-0 ms-2"
-                          t-on-click="() => this.removeColumn(col_index)" title="Delete">✕</button>
-                </div>
-                <div t-if="!props.hideColumnControls" class="mb-2">
-                  <select t-att-disabled="props.readonly"
-                          class="o_input form-select form-select-sm"
-                          t-att-value="col.type"
-                          t-on-change="(ev) => this.changeColumnType(col_index, ev)">
-                    <option value="text">Text</option>
-                    <option value="selection">Selection</option>
-                    <option value="boolean">Boolean</option>
-                    <option value="image">Image</option>
-                  </select>
-                </div>
-                
-                <div t-if="col.type === 'selection' and !props.readonly and !props.hideColumnControls">
-                  <input class="o_input o_field_char form-control form-control-sm"
-                         t-att-value="col.options ? col.options.join(', ') : ''"
-                         placeholder="Options (comma separated)"
-                         t-on-change="(ev) => this.updateColumnOptions(col_index, ev)"/>
-                </div>
-              </th>
-            </t>
-            <th style="width: 80px;">✦</th>
-          </tr>
-        </thead>
-        <tbody>
-          <t t-foreach="state.rows" t-as="row" t-key="row_index">
-            <tr>
-              <td class="text-muted text-center"><t t-esc="row_index + 1"/></td>
-              <t t-foreach="state.columns" t-as="col" t-key="col.name">
-                <td>
-                  <!-- Text input -->
-                  <t t-if="col.type === 'text'">
-                    <input t-att-disabled="props.readonly"
-                           class="o_input o_field_char w-100"
-                           t-att-value="row[col.name] || ''"
-                           t-on-input="(ev) => this.editCell(row_index, col.name, ev, 'text')"/>
-                  </t>
-                  
-                  <!-- Selection dropdown -->
-                  <t t-if="col.type === 'selection'">
-                    <select t-att-disabled="props.readonly"
-                            class="o_input form-select form-select-sm w-100"
-                            t-att-value="row[col.name] || ''"
-                            t-on-change="(ev) => this.editCell(row_index, col.name, ev, 'selection')">
-                      <option value="">-- Select --</option>
-                      <t t-foreach="col.options || []" t-as="opt" t-key="opt">
-                        <option t-att-value="opt"><t t-esc="opt"/></option>
-                      </t>
-                    </select>
-                  </t>
-                  
-                  <!-- Boolean checkbox -->
-                  <t t-if="col.type === 'boolean'">
-                    <div class="form-check">
-                      <input t-att-disabled="props.readonly"
-                             type="checkbox"
-                             class="form-check-input"
-                             t-att-checked="row[col.name]"
-                             t-on-change="(ev) => this.editCell(row_index, col.name, ev, 'boolean')"/>
-                    </div>
-                  </t>
-                  
-                  <!-- Image upload -->
-                  <t t-if="col.type === 'image'">
-                    <div class="mw-image-cell">
-                      <t t-if="row[col.name]">
-                        <img t-att-src="row[col.name]" class="mw-cell-image" alt=""/>
-                        <button t-if="!props.readonly" 
-                                class="btn btn-sm btn-link text-danger p-0"
-                                t-on-click="() => this.removeImage(row_index, col.name)">
-                          Delete
-                        </button>
-                      </t>
-                      <t t-else="">
-                        <input t-if="!props.readonly"
-                               type="file"
-                               accept="image/*"
-                               class="form-control form-control-sm"
-                               t-on-change="(ev) => this.handleImageUpload(row_index, col.name, ev)"/>
-                      </t>
-                    </div>
-                  </t>
-                </td>
-              </t>
-              <td class="text-center">
-                <button t-if="!props.readonly" class="btn btn-link text-danger p-0"
-                        t-on-click="() => this.removeRow(row_index)" title="Delete Row">Delete</button>
-              </td>
-            </tr>
-          </t>
-          <tr t-if="!state.rows.length" class="text-center text-muted">
-            <td t-att-colspan="state.columns.length + 2">No rows. Click "Add Row".</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-secondary mt-2" t-on-click="() => this.addRow()">Add Row</button>
-  </div>
-</t>
+    <t t-if="state.showImagePreviewModal">
+      <div class="modal d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Image Preview</h5>
+              <button type="button" class="btn-close" t-on-click="() => this.hideImagePreview()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img t-att-src="state.previewImageUrl" 
+                   style="max-width: 100%; max-height: 70vh; border-radius: 8px;" 
+                   alt="Preview"/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" t-on-click="() => this.hideImagePreview()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </t>
+</templates>
